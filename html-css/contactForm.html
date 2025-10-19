@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="contactForm.css" />
+    <title>Registration Form and Products</title>
+  </head>
+  <body>
+    <div class="page-container">
+      <h1>Register and Shop</h1>
+
+      <main>
+        <section class="register">
+          <h2>Register</h2>
+          <form>
+            <label for="first-name">
+              Enter Your First Name:
+              <input
+                id="first-name"
+                name="first-name"
+                type="text"
+                placeholder="Enter Your First Name"
+                required
+            /></label>
+            <label for="last-name">
+              Enter Your Last Name:
+              <input
+                id="last-name"
+                name="last-name"
+                type="text"
+                placeholder=" Enter Your Last Name"
+                required
+            /></label>
+            <label for="email"
+              >Enter Your Email:
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder=" Enter Your email"
+                required
+            /></label>
+            <label for="bio"
+              >Provide a bio:
+              <textarea
+                id="bio"
+                name="bio"
+                rows="5"
+                cols="50"
+                placeholder="I ike coding..."
+              >
+              </textarea>
+            </label>
+            <label for="salutation" name="salutation">Salutation:</label>
+
+            <select name="salutaion" id="salutation">
+              <option value="1">Mr</option>
+              <option value="2">Ms</option>
+              <option value="3">Mrs</option>
+              <option value="4">Miss</option>
+              <option value="5">Dr</option>
+              <option value="6">Sir</option>
+            </select>
+            <button type="submit">Register</button>
+          </form>
+        </section>
+
+        <section class="shop">
+          <h2>Available Products</h2>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>In Stock</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <img
+                      src="./week1/images/gray_vase.jpg"
+                      alt="Gray oblong vase"
+                      class="product-img"
+                    />
+                  </td>
+                  <td>Luna</td>
+                  <td>1,989.90 DKK</td>
+                  <td>Yes</td>
+                  <td><button>Add to Cart</button></td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <img
+                      src="./week1/images/face_vase.jpg"
+                      alt="Faced-shaped ceramic vase"
+                      class="product-img"
+                    />
+                  </td>
+                  <td>Serene</td>
+                  <td>1,149DKK</td>
+                  <td>Soldout</td>
+                  <td><button disabled>Sold Out</button></td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <img
+                      src="./week1/images/orange_vase.jpg"
+                      alt="orange vase"
+                      class="product-img"
+                    />
+                  </td>
+                  <td>Form & Flow</td>
+                  <td>849.90 DKK</td>
+                  <td>Yes</td>
+                  <td><button>Add to Cart</button></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="5"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
