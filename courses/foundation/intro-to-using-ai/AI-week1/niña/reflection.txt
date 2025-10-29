@@ -1,0 +1,25 @@
+1. Three new things I learned from AI while working on this task:
+
+I learned how to link vertical scrolling to horizontal movement, so the page scrolls sideways instead of up and down.
+
+I learned how to collect elements (like background images) into an array and control their movement together with JavaScript.
+
+I learned the importance of layering content and visuals in CSS so that text and images stay in their own spaces and don’t overlap while scrolling.
+
+2.Where I had to tweak or correct Copilot’s suggestions:
+
+Copilot’s can provide necessary codes however these codes can also be tricky because It's either
+provide you with codes that it recommends,not what you ideally preffer.
+Futhermore Copilot’s can also be biase in terms of providing code which leads to be more AI generated codes rather than developing your own codes.
+
+3. Difference between using Copilot to generate code vs. using it as a learning partner:
+
+When using Copilot to generate code, it can give me something that works, but I might not understand why it works or if it’s the best solution.
+
+4. Three risks of relying too much on AI when learning at HackYourFuture:
+
+I might copy code without fully understanding it, which can slow down my learning in the long run.
+
+AI-generated code might have errors or bad practices that I wouldn’t notice if I rely on it too much.
+
+I could become dependent on AI and not develop my own problem-solving and debugging skills, which are essential as a programmer.
