@@ -3,7 +3,7 @@ const dogYearOfBirth = 2021;
 const dogYearFuture = 2040;
 const shouldShowResultInDogYears = true;
 
-let dogYear = dogYearFuture - dogYearOfBirth;
+const dogYear = dogYearFuture - dogYearOfBirth;
 const dogAge = shouldShowResultInDogYears? dogYear * 7 : dogYear;
 const type = shouldShowResultInDogYears ? "dog" : "human";
 
