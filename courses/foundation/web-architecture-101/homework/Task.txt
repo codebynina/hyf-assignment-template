@@ -1,0 +1,25 @@
+1.Draw a simple diagram showing the architecture of this recipe app
+
+   User → Frontend →  Backend(API) →  Database
+
+
+2.Identify the components:
+
+  2.1.Where is the recipe data stored?
+    The recipe is stored in the Database.
+
+  2.2.How does the frontend communicate with the backend?
+    Communication happens over HTTP(S) using API endpoints.
+     
+
+  2.3.What happens when a user adds a new recipe?
+    1.User fills the "Add Recipe" form with the recipe and click Save.
+    2. Frontend sends POST /api/recipes with a JSON body containing 
+      {"title", "ingredients", "instructions"}
+    3.Backend receives the data.
+    4.Backend conveys data to Database.
+    5.Database returns success and the new id.
+    6.Backend returns 201 Created with the created recipe in JSON.
+    7.Frontend receives the response and updates the UI.
+
+
