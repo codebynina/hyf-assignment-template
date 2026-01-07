@@ -3,9 +3,20 @@ console.log("Script loaded");
 const products = getAvailableProducts();
 console.log(products);
 
-// This should create the ul and the li's with the individual products details
 function renderProducts(products) {
-  // your code goes here
+  const ul = document.querySelector("#product-list");
+  ul.innerHTML = "";
+  products.forEach((product) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+  <h2>${product.name}</h2>
+  <div class="product-data">
+    <span class="price">💰 ${product.price} DKK</span>
+    <span class="rating">⭐ ${product.rating}/10</span>
+  </div>
+`;
+    ul.appendChild(li);
+  });
 }
 
-renderProducts(products); 
+renderProducts(products);
