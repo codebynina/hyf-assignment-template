@@ -1,6 +1,6 @@
 body {
   font-family: "Open Sans", sans-serif;
-  background-color: #f9fbfd;
+  background-color: #4978a8;
 }
 
 * {
@@ -17,4 +17,42 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+main {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-weight: 800;
+}
+
+#product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+#product-list li {
+  background-color: white;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+#product-list h2 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.product-data {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #555;
 }

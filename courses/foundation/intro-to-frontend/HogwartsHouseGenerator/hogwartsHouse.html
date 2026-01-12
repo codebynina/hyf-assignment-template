@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hogwarts House Generator</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        background-image: url("hogwarts.jpg");
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+      }
+
+      h1 {
+        font-family: "Cedarville Cursive", cursive;
+        font-size: 3em;
+        color: #0f0118;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      #nameInput {
+        padding: 10px;
+        margin: 10px auto;
+        display: block;
+        width: 90%;
+        max-width: 400px;
+        font-size: 1em;
+      }
+      .content {
+        margin-top: 25vh;
+        text-align: center;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-family: "Cedarville Cursive", cursive;
+        font-size: 1.2em;
+        background-color: #ffd700;
+        border: 2px solid #0f0118;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      .button-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      #result {
+        margin-top: 20px;
+        font-weight: bold;
+        text-align: center;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <h1>Which Hogwarts House Awaits You?</h1>
+
+      <input id="nameInput" type="text" placeholder="Enter your Name" />
+
+      <div class="button-container">
+        <button id="appointBtn">Get House</button>
+        <button id="retryBtn">Try Again</button>
+      </div>
+    </div>
+
+    <p id="result"></p>
+
+    <script src="hogwartsHouse.js"></script>
+  </body>
+</html>
