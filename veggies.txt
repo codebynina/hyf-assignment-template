@@ -1,5 +1,7 @@
 Spinach
 Bean Sprouts
-Cabbage
+Mushroom
 Carrot
 Broccoli
+Potato
+Cauliflower
