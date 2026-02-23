@@ -1,6 +1,7 @@
 Spinach
 Bean Sprouts
 Mushroom
+Lettuce
 Carrot
 Broccoli
 Potato
