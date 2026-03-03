@@ -1,10 +1,22 @@
+:root {
+  --primary-color: #010141;
+  --accent-blue: #0000ff;
+  --text-secondary: #636161;
+  --bg-light: #e6ddd0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   height: 300vh;
   overflow-x: hidden;
   margin: 0;
-  background-color: rgb(230, 221, 208);
+  background-color: var(--bg-light);
 }
 
+/* Horizontal scrolling container */
 .horizontal-wrapper {
   display: flex;
   width: max-content;
@@ -13,39 +25,75 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+
+  /* Helps smoothness in many browsers */
+  will-change: transform;
 }
 
+/* Each "screen" */
 section,
 .hero {
   position: relative;
   min-width: 100vw;
   height: 100vh;
   flex-shrink: 0;
+
+  /* Creates a stacking context so z-index behaves predictably */
+  isolation: isolate;
 }
 
+/* Background illustration layer (always behind content) */
 .background-layer {
+  position: absolute;
   top: 0;
   right: 0;
-  width: 75%;
+
+  width: 55%;
   height: 100%;
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+
   z-index: 0;
+  overflow: hidden;
+
+  /* Important: prevents the layer from covering/interacting with text */
+  pointer-events: none;
 }
 
+/* Fill container without stretching (keeps natural aspect ratio) */
+.background-layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Optional overlay for sections that have it */
+.overlay-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  /* uncomment if you want a subtle overlay tint */
+  /* background: rgba(230, 221, 208, 0.25); */
+}
+
+/* Foreground content (always above background) */
 .content-layer {
+  position: relative;
+  z-index: 2;
+
   width: 45%;
   height: 100%;
+
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
+
   margin-left: -10%;
-  z-index: 2;
+  padding: 0 5%;
 }
 
+/* HERO */
 .hero {
   display: flex;
   flex-direction: column;
@@ -55,13 +103,12 @@ section,
 }
 
 .hero-title {
-  position: relative;
   font-size: 10vw;
   font-weight: 800;
   margin-top: 15px;
   letter-spacing: 0.5rem;
   line-height: 0.9;
-  color: rgb(1, 1, 63);
+  color: var(--primary-color);
   font-family: sans-serif;
   margin-left: -2%;
 }
@@ -69,15 +116,15 @@ section,
 .hero-description {
   max-width: 500px;
   font-size: 1rem;
-  line-height: 1rem;
-  position: relative;
-  color: rgb(99, 97, 97);
+  line-height: 1.5rem;
+  color: var(--text-secondary);
 }
 
+/* CTA button */
 #view-work {
   display: inline-block;
   padding: 12px 24px;
-  background-color: blue;
+  background-color: var(--accent-blue);
   color: white;
   text-decoration: none;
   border-radius: 15px;
@@ -88,7 +135,7 @@ section,
 }
 
 #view-work:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .social-media-icons {
@@ -99,49 +146,55 @@ section,
 }
 
 .social-media-icons a {
-  color: blue;
+  color: var(--accent-blue);
   font-size: 1.5rem;
   transition: transform 0.3s ease;
 }
 
 .social-media-icons a:hover {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
-.background-layer img {
-  width: 100%;
-  height: 100%;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
+/* Responsive layout */
 @media (max-width: 1024px) {
-  .content-layer {
-    max-width: 60%;
-    padding-left: 5%;
-  }
   .background-layer {
     width: 50%;
+  }
+
+  .content-layer {
+    width: 50%;
+    margin-left: 0;
   }
 }
 
 @media (max-width: 768px) {
-  .content-layer {
-    max-width: 55%;
-    padding-left: 5%;
-  }
   .background-layer {
-    width: 45%;
+    width: 40%;
+    opacity: 0.9; /* makes it feel less heavy */
+  }
+
+  .content-layer {
+    width: 60%;
+    margin-left: 0;
+  }
+
+  .hero-title {
+    letter-spacing: 0.25rem;
   }
 }
 
 @media (max-width: 480px) {
-  .content-layer {
-    max-width: 60%;
-    padding-left: 5%;
-  }
   .background-layer {
-    width: 40%;
+    width: 35%;
+    opacity: 0.85;
+  }
+
+  .content-layer {
+    width: 65%;
+    margin-left: 0;
+  }
+
+  .hero-title {
+    font-size: 14vw;
   }
 }
