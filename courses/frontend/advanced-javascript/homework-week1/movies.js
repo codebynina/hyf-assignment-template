@@ -44586,11 +44586,28 @@ const movies = [
 
 const results = document.getElementById("results");
 
+const getStars = (rating) => {
+  const stars = rating / 2;
+
+  const fullStars = Math.floor(stars);
+  const decimal = stars - fullStars;
+
+  let halfStar = 0;
+  if (decimal >= 0.5) {
+    halfStar = 1;
+  }
+  const emptyStars = 5 - fullStars - halfStar;
+  const full = "★".repeat(fullStars);
+  const half = halfStar ? "⯪" : "";
+  const empty = "☆".repeat(emptyStars);
+  return full + half + empty;
+};
+
 const showMovies = (movieArray) => {
   results.innerHTML = "";
   movieArray.slice(0, 20).forEach((movie) => {
     const li = document.createElement("li");
-    li.textContent = `${movie.title} (${movie.year}) ⭐ ${movie.rating}`;
+    li.innerHTML = `${movie.title} (${movie.year}) <div class="star-rating"> ${getStars(movie.rating)}</div>`;
     results.appendChild(li);
   });
 };
