@@ -44596,18 +44596,25 @@ const getStars = (rating) => {
   if (decimal >= 0.5) {
     halfStar = 1;
   }
+
   const emptyStars = 5 - fullStars - halfStar;
+
   const full = "★".repeat(fullStars);
   const half = halfStar ? "⯪" : "";
   const empty = "☆".repeat(emptyStars);
+
   return full + half + empty;
 };
 
 const showMovies = (movieArray) => {
   results.innerHTML = "";
+
   movieArray.slice(0, 20).forEach((movie) => {
     const li = document.createElement("li");
-    li.innerHTML = `${movie.title} (${movie.year}) <div class="star-rating"> ${getStars(movie.rating)}</div>`;
+    li.innerHTML = `
+      ${movie.title} (${movie.year})
+      <div class="star-rating">${getStars(movie.rating)}</div>
+    `;
     results.appendChild(li);
   });
 };
@@ -44631,6 +44638,7 @@ document.getElementById("movies80s").addEventListener("click", () => {
 
 const duplicated = movies.filter((movie) => {
   const words = movie.title.split(" ");
+
   for (let i = 0; i < words.length; i++) {
     const firstIndex = words.indexOf(words[i]);
     const lastIndex = words.lastIndexOf(words[i]);
@@ -44639,14 +44647,208 @@ const duplicated = movies.filter((movie) => {
       return true;
     }
   }
+
   return false;
 });
 
 document.getElementById("duplicateWords").addEventListener("click", () => {
   showMovies(duplicated);
 });
+
 const totalRating = movies.reduce((total, movie) => {
   return total + movie.rating;
 }, 0);
 
-console.log(totalRating);
+const averageRating = totalRating / movies.length;
+
+console.log("Total rating:", totalRating);
+console.log("Average rating:", averageRating);
+
+const highRatings = movies
+  .filter((movie) => movie.rating > 6)
+  .map((movie) => movie.rating)
+  .sort((a, b) => b - a);
+
+console.log("Ratings higher than 6:", highRatings);
+
+const specialMovies = movies.filter((movie) => {
+  const title = movie.title.toLowerCase();
+
+  return (
+    title.includes("surfer") ||
+    title.includes("alien") ||
+    title.includes("benjamin")
+  );
+});
+
+document.getElementById("specialMovies").addEventListener("click", () => {
+  showMovies(specialMovies);
+});
+
+document.getElementById("highRatings").addEventListener("click", () => {
+  results.innerHTML = "";
+
+  highRatings.slice(0, 20).forEach((rating) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      Rating: ${rating}
+      <div class="star-rating">${getStars(rating)}</div>
+    `;
+    results.appendChild(li);
+  });
+});
+
+document.getElementById("movies80sCount").addEventListener("click", () => {
+  const movies80s = movies.filter(
+    (movie) => movie.year >= 1980 && movie.year <= 1989,
+  );
+  const results = document.getElementById("results");
+
+  const getStars = (rating) => {
+    const stars = rating / 2;
+
+    const fullStars = Math.floor(stars);
+    const decimal = stars - fullStars;
+
+    let halfStar = 0;
+    if (decimal >= 0.5) {
+      halfStar = 1;
+    }
+
+    const emptyStars = 5 - fullStars - halfStar;
+
+    const full = "★".repeat(fullStars);
+    const half = halfStar ? "⯪" : "";
+    const empty = "☆".repeat(emptyStars);
+
+    return full + half + empty;
+  };
+
+  const showMovies = (movieArray) => {
+    results.innerHTML = "";
+
+    movieArray.slice(0, 20).forEach((movie) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+      ${movie.title} (${movie.year})
+      <div class="star-rating">${getStars(movie.rating)}</div>
+    `;
+      results.appendChild(li);
+    });
+  };
+
+  document.getElementById("shortTitles").addEventListener("click", () => {
+    const shortMovies = movies.filter((movie) => movie.title.length <= 10);
+    showMovies(shortMovies);
+  });
+
+  document.getElementById("longTitles").addEventListener("click", () => {
+    const longTitles = movies.filter((movie) => movie.title.length > 20);
+    showMovies(longTitles);
+  });
+
+  document.getElementById("movies80s").addEventListener("click", () => {
+    const movies80s = movies.filter(
+      (movie) => movie.year >= 1980 && movie.year <= 1989,
+    );
+    showMovies(movies80s);
+  });
+
+  const duplicated = movies.filter((movie) => {
+    const words = movie.title.split(" ");
+
+    for (let i = 0; i < words.length; i++) {
+      const firstIndex = words.indexOf(words[i]);
+      const lastIndex = words.lastIndexOf(words[i]);
+
+      if (firstIndex !== lastIndex) {
+        return true;
+      }
+    }
+
+    return false;
+  });
+
+  document.getElementById("duplicateWords").addEventListener("click", () => {
+    showMovies(duplicated);
+  });
+
+  const totalRating = movies.reduce((total, movie) => {
+    return total + movie.rating;
+  }, 0);
+
+  const averageRating = totalRating / movies.length;
+
+  console.log("Total rating:", totalRating);
+  console.log("Average rating:", averageRating);
+
+  const highRatings = movies
+    .filter((movie) => movie.rating > 6)
+    .map((movie) => movie.rating)
+    .sort((a, b) => b - a);
+
+  console.log("Ratings higher than 6:", highRatings);
+
+  const specialMovies = movies.filter((movie) => {
+    const title = movie.title.toLowerCase();
+
+    return (
+      title.includes("surfer") ||
+      title.includes("alien") ||
+      title.includes("benjamin")
+    );
+  });
+
+  document.getElementById("specialMovies").addEventListener("click", () => {
+    showMovies(specialMovies);
+  });
+
+  document.getElementById("highRatings").addEventListener("click", () => {
+    results.innerHTML = "";
+
+    highRatings.slice(0, 20).forEach((rating) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+      Rating: ${rating}
+      <div class="star-rating">${getStars(rating)}</div>
+    `;
+      results.appendChild(li);
+    });
+  });
+
+  document.getElementById("movies80sCount").addEventListener("click", () => {
+    const movies80s = movies.filter(
+      (movie) => movie.year >= 1980 && movie.year <= 1989,
+    );
+
+    results.innerHTML = `
+    <li>
+      Number of movies from 1980–1989: ${movies80s.length}
+    </li>
+  `;
+  });
+
+  document.getElementById("averageRating").addEventListener("click", () => {
+    results.innerHTML = `
+    <li>
+      Average rating: ${averageRating.toFixed(2)}
+      <div class="star-rating">${getStars(averageRating)}</div>
+    </li>
+  `;
+  });
+
+  results.innerHTML = `
+    <li>
+      Number of movies from 1980–1989: <div class = "numbersOfMovies">${movies80s.length}</div>
+    </li>
+  `;
+});
+
+document.getElementById("averageRating").addEventListener("click", () => {
+  results.innerHTML = `
+    <li>
+      Average rating: ${averageRating.toFixed(2)}
+      <div class="star-rating">${getStars(averageRating)}</div>
+    </li>
+  `;
+});
