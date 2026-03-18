@@ -1,7 +1,7 @@
 const output = document.getElementById("output");
 
 // 1. Called after 2.5 seconds
-document.getElementById("exercise1-btn").addEventListener("click", () => {
+document.getElementById("btn1").addEventListener("click", () => {
   output.innerHTML += "<p>Exercise 1 started...</p>";
 
   setTimeout(() => {
@@ -16,7 +16,7 @@ const scheduleLog = (delay, stringToLog) => {
   }, delay * 1000);
 };
 
-document.getElementById("exercise2-btn").addEventListener("click", () => {
+document.getElementById("btn2").addEventListener("click", () => {
   scheduleLog(1, "This string logged after 1 second.");
 });
 
@@ -33,7 +33,7 @@ const logPlanet = (planetLogFunction) => {
   planetLogFunction();
 };
 
-document.getElementById("exercise4-btn").addEventListener("click", () => {
+document.getElementById("btn3").addEventListener("click", () => {
   logPlanet(earthLogger);
   logPlanet(saturnLogger);
 });
@@ -57,21 +57,21 @@ const getLocation = () => {
   }
 };
 
-document.getElementById("exercise5-btn").addEventListener("click", getLocation);
+document.getElementById("btn4").addEventListener("click", getLocation);
 
 // 7. runAfterDelay
 const runAfterDelay = (delay, callback) => {
   setTimeout(callback, delay * 1000);
 };
 
-document.getElementById("exercise7-btn").addEventListener("click", () => {
+document.getElementById("btn5").addEventListener("click", () => {
   runAfterDelay(3, () => {
     output.innerHTML += "<p>Logged after 3 seconds</p>";
   });
 });
 
 // 8. Double click
-document.getElementById("exercise8-btn").addEventListener("dblclick", () => {
+document.getElementById("btn6").addEventListener("dblclick", () => {
   output.innerHTML += "<p>Double click!</p>";
 });
 
@@ -94,15 +94,73 @@ const badJoke = () => {
     "<p>Why did the computer go to the doctor? It had a virus! 😐</p>";
 };
 
-document.getElementById("exercise9-funny-btn").addEventListener("click", () => {
+document.getElementById("btn7").addEventListener("click", () => {
   jokeCreator(true, funnyJoke, badJoke);
 });
 
-document.getElementById("exercise9-bad-btn").addEventListener("click", () => {
+document.getElementById("btn8").addEventListener("click", () => {
   jokeCreator(false, funnyJoke, badJoke);
 });
 
+const gameTimeInput = document.getElementById("game-time");
+const startGameButton = document.getElementById("start-game");
+const countS = document.getElementById("count-s");
+const countL = document.getElementById("count-l");
+const gameStatus = document.getElementById("game-status");
+const winner = document.getElementById("winner");
+
+let sPresses = 0;
+let lPresses = 0;
+let gameRunning = false;
+
+const handleKeyPress = (event) => {
+  if (!gameRunning) {
+    return;
+  }
+
+  if (event.key === "s") {
+    sPresses++;
+    countS.textContent = sPresses;
+  } else if (event.key === "l") {
+    lPresses++;
+    countL.textContent = lPresses;
+  }
+};
+
+const startGame = () => {
+  const gameDuration = Number(gameTimeInput.value);
+
+  if (gameDuration <= 0) {
+    gameStatus.textContent = "Please enter a valid number";
+    return;
+  }
+
+  sPresses = 0;
+  lPresses = 0;
+  countS.textContent = 0;
+  countL.textContent = 0;
+  winner.textContent = "";
+  gameStatus.textContent = "Game started!";
+  gameRunning = true;
+
+  setTimeout(() => {
+    gameRunning = false;
+    gameStatus.textContent = "Time's up!";
+
+    if (sPresses > lPresses) {
+      winner.textContent = "S wins!";
+    } else if (lPresses > sPresses) {
+      winner.textContent = "L wins!";
+    } else {
+      winner.textContent = "It's a draw!";
+    }
+  }, gameDuration * 1000);
+};
+
+startGameButton.addEventListener("click", startGame);
+document.addEventListener("keydown", handleKeyPress);
+
 // Clear output
-document.getElementById("clear-btn").addEventListener("click", () => {
+document.getElementById("btn9").addEventListener("click", () => {
   output.innerHTML = "";
 });
