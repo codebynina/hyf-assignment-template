@@ -6,7 +6,7 @@ setTimeout(() => {
 
 //2.Create a function that takes 2 parameters: delay and stringToLog. Calling this function should log out the stringToLog after delay seconds. Call the function you have created
 
-scheduleLog = (delay, stringToLog) => {
+const scheduleLog = (delay, stringToLog) => {
   setTimeout(() => {
     console.log(stringToLog);
   }, delay * 1000);
@@ -35,3 +35,87 @@ const logPlanet = (planetLogFunction) => {
 };
 logPlanet(earthLogger);
 logPlanet(saturnLogger);
+
+/*5.Create a button with the text called "Log location".
+ When this button is clicked the location (latitude, longitude) of the user should be logged out using this browser api.*/
+
+const getLocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      console.log(`Latitude: ${lat}, Longitude: ${lon}`);
+    });
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
+};
+const locationButton = document.getElementById("location-btn");
+locationButton.addEventListener("click", getLocation);
+
+/* 7.Create a function called runAfterDelay. 
+It has two parameters: delay and callback. When called the function should wait delay seconds and then call the provided callback function. 
+Try and call this function with different delays and different callback functions. */
+
+let runAfterDelay = (delay, callback) => {
+  setTimeout(() => {
+    callback();
+  }, delay * 3000);
+};
+runAfterDelay(3, function () {
+  console.log("Should be logged after 3 second.");
+});
+
+/*8.
+Check if we have double clicked on the page. A double click is defined by two clicks within 0.5 seconds. 
+If a double click has been detected, log out the text: "double click!" */
+
+const doubleClickButton = document.getElementById("dbl-click");
+let lastClickTimer = 0;
+
+document.addEventListener("click", () => {
+  const currentTime = Date.now();
+  const timeDifference = currentTime - lastClickTimer;
+  if (timeDifference <= 500) {
+    console.log("Double Click");
+  }
+  lastClickTimer = currentTime;
+});
+
+/* 
+9.Create a function called jokeCreator that has three parameters: shouldTellFunnyJoke (boolean), logFunnyJoke (function), and logBadJoke (function). 
+If shouldTellFunnyJoke is true it should call logFunnyJoke, which displays a funny joke on the page. Otherwise it should call logBadJoke, 
+which displays a bad joke on the page.
+*/
+
+const jokeCreator = (shouldTellFunnyJoke, logFunnyJoke, logBadJoke) => {
+  if (shouldTellFunnyJoke) {
+    logFunnyJoke();
+  } else {
+    logBadJoke();
+  }
+};
+
+jokeCreator(
+  true,
+  function () {
+    console.log(
+      "My teachers told me my procrastination would keep me from being successful. I told them, “Just you wait!”",
+    );
+  },
+  function () {
+    console.log("Why did the computer go to the doctor? It had a virus!");
+  },
+);
+
+jokeCreator(
+  false,
+  function () {
+    console.log(
+      "My teachers told me my procrastination would keep me from being successful. I told them, “Just you wait!”",
+    );
+  },
+  function () {
+    console.log("Why did the computer go to the doctor? It had a virus!");
+  },
+);
