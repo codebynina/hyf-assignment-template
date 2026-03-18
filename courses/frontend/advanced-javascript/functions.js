@@ -119,3 +119,23 @@ jokeCreator(
     console.log("Why did the computer go to the doctor? It had a virus!");
   },
 );
+
+const funnyJoke = () => {
+  console.log("This is a funny joke 😂");
+};
+
+const badJoke = () => {
+  console.log("This is a bad joke 😐");
+};
+
+const anotherJoke = () => {
+  console.log("Another joke 😆");
+};
+
+const jokes = [funnyJoke, badJoke, anotherJoke];
+
+jokes.forEach((jokeFunction) => {
+  jokeFunction();
+});
+
+jokeCreator(true, funnyJoke, badJoke);
