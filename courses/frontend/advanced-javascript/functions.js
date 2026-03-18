@@ -1,93 +1,81 @@
-//1.Log out the text Called after 2.5 seconds 2.5 seconds after the script is loaded.
+const output = document.getElementById("output");
 
-setTimeout(() => {
-  console.log("Called after 2.5 seconds");
-}, 2500);
+// 1. Called after 2.5 seconds
+document.getElementById("exercise1-btn").addEventListener("click", () => {
+  output.innerHTML += "<p>Exercise 1 started...</p>";
 
-//2.Create a function that takes 2 parameters: delay and stringToLog. Calling this function should log out the stringToLog after delay seconds. Call the function you have created
+  setTimeout(() => {
+    output.innerHTML += "<p>Called after 2.5 seconds</p>";
+  }, 2500);
+});
 
+// 2. Function with delay
 const scheduleLog = (delay, stringToLog) => {
   setTimeout(() => {
-    console.log(stringToLog);
+    output.innerHTML += `<p>${stringToLog}</p>`;
   }, delay * 1000);
 };
 
-scheduleLog(1, "This string logged after 1 second.");
-
-//4.Create a button in html. When clicking this button, use the function you created in the previous task to log out the text: Called after 5 seconds 5 seconds after the button is clicked.
-
-const button = document.getElementById("btn");
-
-button.addEventListener("click", () => {
-  scheduleLog(5, "Called after 5 seconds");
+document.getElementById("exercise2-btn").addEventListener("click", () => {
+  scheduleLog(1, "This string logged after 1 second.");
 });
 
-/*
-4.Create two functions and assign them to two different variables. One function logs out Earth, the other function logs out Saturn. 
-Now create a new third function that has one parameter: planetLogFunction. The only thing the third function should do is call the provided parameter function. 
-Try call the third function once with the Earth function and once with the Saturn function.*/
+// 4. Button → log after 5 seconds
+const earthLogger = () => {
+  output.innerHTML += "<p>Earth</p>";
+};
 
-const earthLogger = () => console.log("Earth");
-const saturnLogger = () => console.log("Saturn");
+const saturnLogger = () => {
+  output.innerHTML += "<p>Saturn</p>";
+};
 
 const logPlanet = (planetLogFunction) => {
   planetLogFunction();
 };
-logPlanet(earthLogger);
-logPlanet(saturnLogger);
 
-/*5.Create a button with the text called "Log location".
- When this button is clicked the location (latitude, longitude) of the user should be logged out using this browser api.*/
+document.getElementById("exercise4-btn").addEventListener("click", () => {
+  logPlanet(earthLogger);
+  logPlanet(saturnLogger);
+});
 
+// 5. Location
 const getLocation = () => {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-      console.log(`Latitude: ${lat}, Longitude: ${lon}`);
-    });
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        output.innerHTML += `<p>Latitude: ${lat}, Longitude: ${lon}</p>`;
+      },
+      () => {
+        output.innerHTML += "<p>Could not get location</p>";
+      },
+    );
   } else {
-    console.log("Geolocation is not supported by this browser.");
+    output.innerHTML += "<p>Geolocation not supported</p>";
   }
 };
-const locationButton = document.getElementById("location-btn");
-locationButton.addEventListener("click", getLocation);
 
-/* 7.Create a function called runAfterDelay. 
-It has two parameters: delay and callback. When called the function should wait delay seconds and then call the provided callback function. 
-Try and call this function with different delays and different callback functions. */
+document.getElementById("exercise5-btn").addEventListener("click", getLocation);
 
-let runAfterDelay = (delay, callback) => {
-  setTimeout(() => {
-    callback();
-  }, delay * 3000);
+// 7. runAfterDelay
+const runAfterDelay = (delay, callback) => {
+  setTimeout(callback, delay * 1000);
 };
-runAfterDelay(3, function () {
-  console.log("Should be logged after 3 second.");
+
+document.getElementById("exercise7-btn").addEventListener("click", () => {
+  runAfterDelay(3, () => {
+    output.innerHTML += "<p>Logged after 3 seconds</p>";
+  });
 });
 
-/*8.
-Check if we have double clicked on the page. A double click is defined by two clicks within 0.5 seconds. 
-If a double click has been detected, log out the text: "double click!" */
-
-const doubleClickButton = document.getElementById("dbl-click");
-let lastClickTimer = 0;
-
-document.addEventListener("click", () => {
-  const currentTime = Date.now();
-  const timeDifference = currentTime - lastClickTimer;
-  if (timeDifference <= 500) {
-    console.log("Double Click");
-  }
-  lastClickTimer = currentTime;
+// 8. Double click
+document.getElementById("exercise8-btn").addEventListener("dblclick", () => {
+  output.innerHTML += "<p>Double click!</p>";
 });
 
-/* 
-9.Create a function called jokeCreator that has three parameters: shouldTellFunnyJoke (boolean), logFunnyJoke (function), and logBadJoke (function). 
-If shouldTellFunnyJoke is true it should call logFunnyJoke, which displays a funny joke on the page. Otherwise it should call logBadJoke, 
-which displays a bad joke on the page.
-*/
-
+// 9. Joke creator
 const jokeCreator = (shouldTellFunnyJoke, logFunnyJoke, logBadJoke) => {
   if (shouldTellFunnyJoke) {
     logFunnyJoke();
@@ -96,46 +84,25 @@ const jokeCreator = (shouldTellFunnyJoke, logFunnyJoke, logBadJoke) => {
   }
 };
 
-jokeCreator(
-  true,
-  function () {
-    console.log(
-      "My teachers told me my procrastination would keep me from being successful. I told them, “Just you wait!”",
-    );
-  },
-  function () {
-    console.log("Why did the computer go to the doctor? It had a virus!");
-  },
-);
-
-jokeCreator(
-  false,
-  function () {
-    console.log(
-      "My teachers told me my procrastination would keep me from being successful. I told them, “Just you wait!”",
-    );
-  },
-  function () {
-    console.log("Why did the computer go to the doctor? It had a virus!");
-  },
-);
-
 const funnyJoke = () => {
-  console.log("This is a funny joke 😂");
+  output.innerHTML +=
+    "<p>My teachers told me my procrastination would keep me from being successful. I told them, 'Just you wait!' 😂</p>";
 };
 
 const badJoke = () => {
-  console.log("This is a bad joke 😐");
+  output.innerHTML +=
+    "<p>Why did the computer go to the doctor? It had a virus! 😐</p>";
 };
 
-const anotherJoke = () => {
-  console.log("Another joke 😆");
-};
-
-const jokes = [funnyJoke, badJoke, anotherJoke];
-
-jokes.forEach((jokeFunction) => {
-  jokeFunction();
+document.getElementById("exercise9-funny-btn").addEventListener("click", () => {
+  jokeCreator(true, funnyJoke, badJoke);
 });
 
-jokeCreator(true, funnyJoke, badJoke);
+document.getElementById("exercise9-bad-btn").addEventListener("click", () => {
+  jokeCreator(false, funnyJoke, badJoke);
+});
+
+// Clear output
+document.getElementById("clear-btn").addEventListener("click", () => {
+  output.innerHTML = "";
+});
