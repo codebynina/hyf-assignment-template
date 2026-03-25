@@ -33,7 +33,7 @@ const logPlanet = (planetLogFunction) => {
   planetLogFunction();
 };
 
-document.getElementById("btn3").addEventListener("click", () => {
+document.getElementById("btn4").addEventListener("click", () => {
   logPlanet(earthLogger);
   logPlanet(saturnLogger);
 });
@@ -57,21 +57,21 @@ const getLocation = () => {
   }
 };
 
-document.getElementById("btn4").addEventListener("click", getLocation);
+document.getElementById("btn5").addEventListener("click", getLocation);
 
 // 7. runAfterDelay
 const runAfterDelay = (delay, callback) => {
   setTimeout(callback, delay * 1000);
 };
 
-document.getElementById("btn5").addEventListener("click", () => {
+document.getElementById("btn6").addEventListener("click", () => {
   runAfterDelay(3, () => {
     output.innerHTML += "<p>Logged after 3 seconds</p>";
   });
 });
 
 // 8. Double click
-document.getElementById("btn6").addEventListener("dblclick", () => {
+document.getElementById("btn7").addEventListener("dblclick", () => {
   output.innerHTML += "<p>Double click!</p>";
 });
 
@@ -94,12 +94,54 @@ const badJoke = () => {
     "<p>Why did the computer go to the doctor? It had a virus! 😐</p>";
 };
 
-document.getElementById("btn7").addEventListener("click", () => {
+document.getElementById("btn8").addEventListener("click", () => {
   jokeCreator(true, funnyJoke, badJoke);
 });
 
-document.getElementById("btn8").addEventListener("click", () => {
+document.getElementById("btn9").addEventListener("click", () => {
   jokeCreator(false, funnyJoke, badJoke);
+});
+
+// 3. Function as a variable
+
+const firstFunction = () => {
+  output.innerHTML += "<p>First function from array</p>";
+};
+
+const secondFunction = () => {
+  output.innerHTML += "<p>Second function from array</p>";
+};
+
+const thirdFunction = () => {
+  output.innerHTML += "<p>Third function from array</p>";
+};
+
+const functionArray = [firstFunction, secondFunction, thirdFunction];
+
+const normalFunction = function () {
+  output.innerHTML += "<p>This is a function expression stored in a const</p>";
+};
+
+function declaredFunction() {
+  output.innerHTML += "<p>This is a normal function declaration</p>";
+}
+
+const functionObject = {
+  sayHello: function () {
+    output.innerHTML += "<p>Hello from the object function</p>";
+  },
+};
+
+document.getElementById("btn3").addEventListener("click", () => {
+  output.innerHTML += "<p>Exercise 3 started...</p>";
+
+  functionArray.forEach((item) => {
+    item();
+  });
+
+  normalFunction();
+  declaredFunction();
+  functionObject.sayHello();
 });
 
 const gameTimeInput = document.getElementById("game-time");
@@ -161,6 +203,6 @@ startGameButton.addEventListener("click", startGame);
 document.addEventListener("keydown", handleKeyPress);
 
 // Clear output
-document.getElementById("btn9").addEventListener("click", () => {
+document.getElementById("btn10").addEventListener("click", () => {
   output.innerHTML = "";
 });
