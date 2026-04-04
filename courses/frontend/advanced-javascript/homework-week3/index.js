@@ -12,39 +12,29 @@ let lastChanged = "from";
 const url = "https://open.er-api.com/v6/latest/USD";
 
 async function getRates() {
-  try {
-    const response = await fetch(url);
+  const response = await fetch(url);
 
-    if (!response.ok) {
-      throw new Error("Problem with fetching data");
-    }
-
-    const data = await response.json();
-
-    allRates = data.rates;
-
-    showCurrencies();
-    setStartValues();
-    updateMoney();
-  } catch (error) {
-    console.log("Error:", error);
-    resultText.textContent = "Could not load exchange rates";
+  if (!response.ok) {
+    throw new Error("Problem with fetching data");
   }
+
+  const data = await response.json();
+  return data.rates;
 }
-function showCurrencies() {
-  const moneyList = Object.keys(allRates); // review Object.keys
-  for (let i = 0; i < moneyList.length; i++) {
-    const money = moneyList[i];
 
-    const option1 = document.createElement("option");
-    option1.value = money;
-    option1.textContent = money;
-    fromSelect.appendChild(option1);
+function populateCurrencyOptions(rates) {
+  const moneyList = Object.keys(rates).sort();
 
-    const option2 = document.createElement("option");
-    option2.value = money;
-    option2.textContent = money;
-    toSelect.appendChild(option2);
+  for (const money of moneyList) {
+    const fromOption = document.createElement("option");
+    fromOption.value = money;
+    fromOption.textContent = money;
+    fromSelect.appendChild(fromOption);
+
+    const toOption = document.createElement("option");
+    toOption.value = money;
+    toOption.textContent = money;
+    toSelect.appendChild(toOption);
   }
 }
 
@@ -54,62 +44,83 @@ function setStartValues() {
   fromInput.value = 1;
 }
 
-function updateMoney() {
-  const fromMoney = fromSelect.value;
-  const toMoney = toSelect.value;
-
-  const fromRate = allRates[fromMoney];
-  const toRate = allRates[toMoney];
+function getSelectedRates(rates) {
+  const fromCurrency = fromSelect.value;
+  const toCurrency = toSelect.value;
+  const fromRate = rates[fromCurrency];
+  const toRate = rates[toCurrency];
 
   if (!fromRate || !toRate) {
-    return;
+    return null;
   }
-  if (lastChanged === "from") {
-    const fromAmount = Number(fromInput.value) || 0;
-    const answer = (fromAmount / fromRate) * toRate;
-    toInput.value = answer.toFixed(2);
-  } else {
-    const toAmount = Number(toInput.value) || 0;
-    const answer = (toAmount / toRate) * fromRate;
-    fromInput.value = answer.toFixed(2);
-  }
-  showText();
+
+  return { fromCurrency, toCurrency, fromRate, toRate };
 }
 
-function showText() {
-  const fromMoney = fromSelect.value;
-  const toMoney = toSelect.value;
+function updateConvertedAmounts(rates) {
+  const selectedRates = getSelectedRates(rates);
 
-  const fromRate = allRates[fromMoney];
-  const toRate = allRates[toMoney];
-
-  if (!fromRate || !toRate) {
+  if (!selectedRates) {
     return;
   }
 
-  const oneRate = toRate / fromRate;
+  const { fromRate, toRate } = selectedRates;
 
-  resultText.textContent = `1 ${fromMoney} = ${oneRate.toFixed(4)} ${toMoney}`;
+  if (lastChanged === "from") {
+    const fromAmount = Number(fromInput.value) || 0;
+    const convertedAmount = (fromAmount / fromRate) * toRate;
+    toInput.value = convertedAmount.toFixed(2);
+  } else {
+    const toAmount = Number(toInput.value) || 0;
+    const convertedAmount = (toAmount / toRate) * fromRate;
+    fromInput.value = convertedAmount.toFixed(2);
+  }
 
-  rateText.textContent = `${fromInput.value || 0} ${fromMoney} = ${toInput.value || 0} ${toMoney}`;
+  updateExchangeRateText(rates);
+}
+
+function updateExchangeRateText(rates) {
+  const selectedRates = getSelectedRates(rates);
+
+  if (!selectedRates) {
+    return;
+  }
+
+  const { fromCurrency, toCurrency, fromRate, toRate } = selectedRates;
+  const oneUnitRate = toRate / fromRate;
+
+  resultText.textContent = `1 ${fromCurrency} = ${oneUnitRate.toFixed(4)} ${toCurrency}`;
+  rateText.textContent = `${fromInput.value || 0} ${fromCurrency} = ${toInput.value || 0} ${toCurrency}`;
+}
+
+async function initializeApp() {
+  try {
+    allRates = await getRates();
+    populateCurrencyOptions(allRates);
+    setStartValues();
+    updateConvertedAmounts(allRates);
+  } catch (error) {
+    console.log("Error:", error);
+    resultText.textContent = "Could not load exchange rates";
+  }
 }
 
 fromInput.addEventListener("input", function () {
   lastChanged = "from";
-  updateMoney();
+  updateConvertedAmounts(allRates);
 });
 
 toInput.addEventListener("input", function () {
   lastChanged = "to";
-  updateMoney();
+  updateConvertedAmounts(allRates);
 });
 
 fromSelect.addEventListener("change", function () {
-  updateMoney();
+  updateConvertedAmounts(allRates);
 });
 
 toSelect.addEventListener("change", function () {
-  updateMoney();
+  updateConvertedAmounts(allRates);
 });
 
 swapBtn.addEventListener("click", function () {
@@ -117,7 +128,7 @@ swapBtn.addEventListener("click", function () {
   fromSelect.value = toSelect.value;
   toSelect.value = temp;
 
-  updateMoney();
+  updateConvertedAmounts(allRates);
 });
 
-getRates();
+initializeApp();
