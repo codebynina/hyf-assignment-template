@@ -64,27 +64,36 @@ class ScreenshotApiService {
         },
       );
 
-      if (!response.ok) {
-        throw new ApiError("Could not generate screenshot.", response.status);
-      }
+      console.log("status:", response.status);
 
       const data = await response.json();
+      console.log("API response:", data);
 
+      if (!response.ok) {
+        throw new ApiError(
+          data.message || "Could not generate screenshot.",
+          response.status,
+        );
+      }
+
+      // 🔥 THIS IS THE IMPORTANT PART
       const screenshotUrl =
-        data.screenshot || data.image || data.imageUrl || data.url;
+        data.screenshot || data.image || data.url || data.screenshotUrl;
 
       if (!screenshotUrl) {
         throw new ApiError(
-          "No screenshot image was returned.",
+          "No screenshot URL found in response.",
           response.status,
         );
       }
 
       return {
-        url: url,
-        screenshotUrl: screenshotUrl,
+        url,
+        screenshotUrl,
       };
     } catch (error) {
+      console.log("generateScreenshot error:", error);
+
       if (error instanceof AppError) {
         throw error;
       }
