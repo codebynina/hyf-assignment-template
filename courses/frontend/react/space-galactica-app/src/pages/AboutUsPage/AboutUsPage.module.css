@@ -1,5 +1,103 @@
 .app {
-  background-color: black;
-  width: 100vw;
-  height: 100vh;
+  background-image: url("/destination/background-destination-desktop.jpg");
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem 1rem 4rem;
+}
+
+.mainContent {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-top: 4rem;
+}
+
+.pageTitle {
+  color: white;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.card {
+  max-width: 900px;
+  margin: 0 auto 2.5rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+}
+
+.values,
+.crew {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.valueItem,
+.crewMember,
+.collaborator {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.crewText {
+  line-height: 1.7;
+  color: #ccc;
+  margin: 0;
+}
+
+.crewList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.crewMember {
+  overflow: hidden;
+}
+
+.crewImage {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 0 auto 1rem auto;
+}
+
+.partnerImage {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+h2 {
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.valueItem h3,
+.crewMember h3 {
+  margin-bottom: 0.75rem;
+  color: white;
+}
+
+p {
+  line-height: 1.7;
+  color: #ccc;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .crewList {
+    grid-template-columns: 1fr 1fr;
+  }
 }
