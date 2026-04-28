@@ -1,6 +1,6 @@
 import { useState } from "react";
-import styles from "./DestinationPage.module.css";
 import PlanetCard from "./PlanetCard";
+import styles from "./DestinationPage.module.css";
 
 const planets = [
   {
@@ -31,20 +31,20 @@ export const Destinations = () => {
     return planetsWishlist.some((planet) => planet.name === planetName);
   };
 
-  const togglePlanetSelection = (name, thumbnail) => {
+  const togglePlanetSelection = ({ name, thumbnail }) => {
     if (isPlanetInWishlist(name)) {
       removePlanetFromWishlist(name);
     } else {
-      addPlanetToWishlist(name, thumbnail);
+      addPlanetToWishlist({ name, thumbnail });
     }
-  };
 
-  const addPlanetToWishlist = (name, thumbnail) => {
-    setPlanetsWishlist([...planetsWishlist, { name, thumbnail }]);
-  };
-  const removePlanetFromWishlist = (name) => {
-    const updated = planetsWishlist.filter((planet) => planet.name !== name);
-    setPlanetsWishlist(updated);
+    const addPlanetToWishlist = ({ name, thumbnail }) => {
+      setPlanetsWishlist([...planetsWishlist, { name, thumbnail }]);
+    };
+    const removePlanetFromWishlist = (name) => {
+      const updated = planetsWishlist.filter((planet) => planet.name !== name);
+      setPlanetsWishlist(updated);
+    };
   };
 
   return (
