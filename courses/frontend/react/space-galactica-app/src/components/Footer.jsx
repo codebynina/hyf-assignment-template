@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import styles from "./Footer.module.css";
 import SocialMediaItem from "./SocialMediaItem";
+import styles from "./Footer.module.css";
 
 export const Footer = () => {
   const { pathname } = useLocation();
@@ -11,9 +11,9 @@ export const Footer = () => {
     },
     {
       name: "Destinations",
-      path: "/destinations",
+      path: "/destination",
     },
-    { name: "About Us", path: "/about-us" },
+    { name: "About Us", path: "/about_us" },
   ];
 
   const socialMedia = [
