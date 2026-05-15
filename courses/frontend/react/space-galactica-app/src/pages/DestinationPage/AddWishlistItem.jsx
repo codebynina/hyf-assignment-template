@@ -6,9 +6,9 @@ export const AddWishlistItem = ({ onAddWishlistItem }) => {
   const [thumbnail, setThumbnail] = useState("/destination/image-europa.png");
 
   const onAddItemPressed = () => {
-    if (!name) return;
+    if (!name.trim()) return;
 
-    onAddWishlistItem({ name, thumbnail });
+    onAddWishlistItem({ name: name.trim(), thumbnail });
     setName("");
   };
 
@@ -36,7 +36,9 @@ export const AddWishlistItem = ({ onAddWishlistItem }) => {
         <option value="/destination/image-titan.png">TITAN</option>
       </select>
 
-      <button onClick={onAddItemPressed}>ADD CUSTOM</button>
+      <button type="button" onClick={onAddItemPressed}>
+        ADD CUSTOM
+      </button>
     </div>
   );
 };
