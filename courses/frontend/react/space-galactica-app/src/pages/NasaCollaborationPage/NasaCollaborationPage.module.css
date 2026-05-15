@@ -1,12 +1,10 @@
-.app {
-  background-color: black;
-  width: 100vw;
-  height: 100vh;
-}
-
-
-.nasaPicOfTheDayImg {
-  width: auto;
-  height: 400px;
-
+.nasaLandsatLink {
+  display: inline-block;
+  margin-block-start: var(--spacing-16);
+  padding: var(--spacing-12) var(--spacing-16);
+  background-color: #fff;
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }

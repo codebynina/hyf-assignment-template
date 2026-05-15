@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { RoverPhoto } from "./RoverPhoto";
+import { SpaceNameGenerator } from "./SpaceNameGenerator";
 import styles from "./NasaCollaborationPage.module.css";
 
 // Read "/app/nasa_collaboration/README.md" for more info about the API_KEY
@@ -69,6 +70,7 @@ export const NasaCollaboration = () => {
           ) : (
             <p>Loading rover photos...</p>
           )}
+          <SpaceNameGenerator />
         </section>
       </main>
     </div>
