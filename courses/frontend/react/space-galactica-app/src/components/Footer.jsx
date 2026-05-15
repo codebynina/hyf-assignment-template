@@ -1,32 +1,50 @@
 import { Link, useLocation } from "react-router-dom";
-import SocialMediaItem from "./SocialMediaItem";
+
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
+  FaLinkedinIn,
+} from "react-icons/fa";
+
+import { FaXTwitter } from "react-icons/fa6";
+
 import styles from "./Footer.module.css";
 
 export const Footer = () => {
   const { pathname } = useLocation();
+
   const pages = [
-    {
-      name: "Home",
-      path: "/",
-    },
-    {
-      name: "Destinations",
-      path: "/destination",
-    },
+    { name: "Home", path: "/" },
+    { name: "Destinations", path: "/destination" },
     { name: "About Us", path: "/about_us" },
   ];
 
   const socialMedia = [
     {
-      title: "LinkedIn",
-      url: "https://www.linkedin.com",
-      icon: "/socialmedia/linkedin.png",
+      title: "Facebook",
+      url: "https://facebook.com",
+      icon: <FaFacebookF />,
     },
-
     {
       title: "Instagram",
       url: "https://instagram.com",
-      icon: "/socialmedia/instagram.jpg",
+      icon: <FaInstagram />,
+    },
+    {
+      title: "X",
+      url: "https://x.com",
+      icon: <FaXTwitter />,
+    },
+    {
+      title: "YouTube",
+      url: "https://youtube.com",
+      icon: <FaYoutube />,
+    },
+    {
+      title: "LinkedIn",
+      url: "https://linkedin.com",
+      icon: <FaLinkedinIn />,
     },
   ];
 
@@ -34,16 +52,19 @@ export const Footer = () => {
     <footer className={pathname !== "/" ? styles.footer : styles.hidden}>
       <div className={styles.footerDescription}>
         <h3>Galactica</h3>
+
         <p>
           Explore the universe and beyond. Your journey to the stars starts
           here.
         </p>
+
         <p>&copy; 2024 Galactica. All rights reserved.</p>
       </div>
 
       <div className={styles.pages}>
         <h3>Pages</h3>
-        <ul>
+
+        <ul className={styles.footerList}>
           {pages.map((page) => (
             <li key={page.path}>
               <Link to={page.path}>{page.name}</Link>
@@ -54,18 +75,24 @@ export const Footer = () => {
 
       <div className={styles.footerLinks}>
         <h3>Follow us</h3>
-        <ul className={styles.footerList}>
+
+        <div className={styles.socialIcons}>
           {socialMedia.map((item) => (
-            <SocialMediaItem
-              key={item.url}
-              url={item.url}
-              title={item.title}
-              icon={item.icon}
-            />
+            <a
+              key={item.title}
+              href={item.url}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={item.title}
+              className={styles.socialIcon}
+            >
+              {item.icon}
+            </a>
           ))}
-        </ul>
+        </div>
       </div>
     </footer>
   );
 };
+
 export default Footer;
