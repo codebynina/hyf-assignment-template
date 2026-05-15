@@ -1,84 +1,108 @@
-.app {
-  background-color: black;
-  width: 100vw;
-  height: 100vh;
-}
-
 .planetCard {
-  border: 1px solid var(--border-color);
-  max-width: 70%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
   margin: var(--spacing-20) 0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: var(--spacing-08);
-  gap: var(--spacing-08);
-}
-
-.planetCard:nth-child(odd) {
-  margin-inline-start: auto;
-}
-
-.planetCard > *:last-child {
-  margin-inline-start: auto;
+  padding: var(--spacing-20);
+  gap: var(--spacing-24);
+  background: rgba(10, 14, 25, 0.45);
 }
 
 .planetDescription {
-  padding-block-start: var(--spacing-04);
-  margin-block-end: auto;
+  flex: 1;
 }
 
 .planetThumbnail {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  margin: 0 var(--spacing-16);
+  object-fit: cover;
 }
 
-.wishlistItem {
-  border: 1px solid var(--border-color);
-  width: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-16);
-  margin: var(--spacing-20);
-  padding: var(--spacing-20);
-}
-
-.wishlistItemThumbnail {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  margin: 0 var(--spacing-16);
-}
 .wishlistList {
   display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-16);
   margin: var(--spacing-16) 0;
 }
 
-.addWishlistItem {
-  border: 1px solid var(--border-color);
-  width: 200px;
+.wishlistItem {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  width: 130px;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  align-items: stretch;
-  margin: var(--spacing-20);
+  align-items: center;
+  gap: var(--spacing-08);
+  padding: var(--spacing-16);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.wishlistItemThumbnail {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.addWishlistItem {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-08);
+  margin: var(--spacing-20) 0 var(--spacing-32);
   padding: var(--spacing-20);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .addWishlistItem p {
-  margin-block-end: var(--spacing-20);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-block-end: var(--spacing-08);
 }
 
 .addWishlistItem label {
-  margin: 0;
-  font-size: small;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
 }
 
-.addWishlistItem input, 
+.addWishlistItem input,
 .addWishlistItem select {
-  height: 30px;
-  margin-block-end: var(--spacing-20);
+  height: 38px;
+  padding: 0 var(--spacing-08);
+  margin-block-end: var(--spacing-12);
+  border: none;
+  background-color: #fff;
+  color: #000;
+}
+
+.addWishlistItem button {
+  margin-block-start: var(--spacing-08);
+}
+@media (max-width: 768px) {
+  .planetCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .planetCard > button {
+    margin-inline-start: 0;
+    align-self: flex-start;
+  }
+
+  .planetThumbnail {
+    width: 100px;
+    height: 100px;
+  }
+
+  .addWishlistItem {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .wishlistItem {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
 }

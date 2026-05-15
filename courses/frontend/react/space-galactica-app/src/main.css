@@ -1,7 +1,8 @@
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+  --font-mono:
+    ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
@@ -87,7 +88,6 @@ body {
   overflow-x: hidden;
 }
 
-
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -103,12 +103,19 @@ a {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-block-end: var(--spacing-08);
   color: var(--primary-text-color);
 }
 
-p, b, i {
+p,
+b,
+i {
   margin-block-end: var(--spacing-08);
 }
 
@@ -135,7 +142,6 @@ button {
   padding-block-start: var(--header-height);
   color: #fff;
 }
-
 
 .card {
   position: relative;
@@ -206,7 +212,7 @@ button {
 
 .fullBGpicture::before {
   content: "";
-  background: url('/destination/background-destination-desktop.jpg') no-repeat;
+  background: url("/destination/background-destination-desktop.jpg") no-repeat;
   background-size: cover;
   background-position: center;
   background-color: #000;
@@ -230,4 +236,53 @@ button {
   flex-flow: column;
   justify-content: space-between;
   min-height: 100vh;
+}
+
+.card {
+  position: relative;
+  padding: var(--spacing-24);
+  margin: var(--spacing-20) var(--spacing-16);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mainContent {
+  max-width: 1120px;
+  margin: auto;
+  padding: calc(var(--header-height) + var(--spacing-24)) var(--spacing-24)
+    var(--spacing-64);
+  color: #fff;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+@media (max-width: 768px) {
+  .mainContent {
+    padding: calc(var(--header-height) + var(--spacing-24)) var(--spacing-16)
+      var(--spacing-40);
+  }
+
+  .card {
+    margin: var(--spacing-16) 0;
+    padding: var(--spacing-16);
+  }
+
+  .roundButton {
+    height: auto;
+    width: auto;
+    min-height: unset;
+    min-width: unset;
+    border-radius: 999px;
+    padding: var(--spacing-12) var(--spacing-16);
+  }
+
+  .roundButtonJumbo {
+    height: 180px;
+    width: 180px;
+    min-height: 180px;
+    min-width: 180px;
+    line-height: 180px;
+    font-size: var(--font-size-xl);
+  }
 }

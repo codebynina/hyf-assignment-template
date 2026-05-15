@@ -18,7 +18,7 @@ const PlanetCard = ({
       </div>
       <button
         className="roundButton"
-        onClick={() => togglePlanetSelection(name, thumbnail)}
+        onClick={() => togglePlanetSelection({ name, thumbnail })}
       >
         {isSelected ? "REMOVE FROM WISHLIST" : "ADD TO WISHLIST"}
       </button>
