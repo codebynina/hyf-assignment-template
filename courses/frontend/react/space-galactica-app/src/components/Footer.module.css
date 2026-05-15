@@ -1,9 +1,10 @@
 .footer {
-  background-color: #ababab9b;
-  color: #000;
-  padding: var(--spacing-20) var(--spacing-40);
+  background-color: rgba(6, 10, 20, 0.95);
+  color: #fff;
+  padding: var(--spacing-32) var(--spacing-40);
   display: flex;
   justify-content: space-between;
+  gap: var(--spacing-32);
 }
 
 .hidden {
@@ -11,21 +12,22 @@
 }
 
 .footer h3 {
-  color: #000;
-  font-size: large;
+  color: #fff;
+  font-size: var(--font-size-lg);
   padding: var(--spacing-08) 0;
 }
 
-.footer p, .footer a, .footer li {
-  color: #000;
-  font-size: medium;
-  font-weight: 200;
+.footer p,
+.footer a,
+.footer li {
+  color: #ddd;
+  font-size: var(--font-size-md);
+  font-weight: 300;
   text-align: start;
 }
 
 .footerDescription {
-  max-width: 300px;
-  text-align: start;
+  max-width: 320px;
 }
 
 .footerDescription p {
@@ -38,8 +40,14 @@
 
 .footerList {
   list-style-type: none;
+  padding: 0;
 }
 
 .footerList li {
   padding-block: var(--spacing-04);
+}
+
+.footer a:hover {
+  color: #fff;
+  text-decoration: underline;
 }

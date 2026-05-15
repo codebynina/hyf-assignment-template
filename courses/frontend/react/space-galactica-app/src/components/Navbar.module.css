@@ -39,13 +39,18 @@
 }
 
 .navbar {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 var(--spacing-8);
+  padding: 0 var(--spacing-08);
   margin: var(--spacing-20);
   background-color: transparent;
+  gap: var(--spacing-16);
+}
 
+.wishlistBadge {
+  display: none;
 }
 
 .navbarBG {
@@ -71,7 +76,48 @@
   letter-spacing: 1px;
 }
 
-.navbarLinks:hover, .isLinkActive {
+.navbarLinks:hover,
+.isLinkActive {
   border-block-end: var(--spacing-04) solid var(--border-color);
   margin-block-end: -4px;
+}
+
+@media (max-width: 768px) {
+  .headerContainer {
+    position: sticky;
+    padding: var(--spacing-12) var(--spacing-16);
+    height: auto;
+    max-height: none;
+    flex-wrap: wrap;
+    gap: var(--spacing-12);
+  }
+
+  .decorativeLine {
+    display: none;
+  }
+
+  .navbar {
+    width: 100%;
+    margin: 0;
+    justify-content: center;
+  }
+
+  .navbarList {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-12);
+    padding: var(--spacing-08);
+  }
+
+  .navbarLinks a {
+    font-size: var(--font-size-xs);
+  }
+
+  .navbarLogo a {
+    font-size: var(--font-size-md);
+  }
+
+  .navbarLogo img {
+    height: 32px;
+  }
 }
