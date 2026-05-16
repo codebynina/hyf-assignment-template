@@ -1,8 +1,8 @@
-import classNames from "classnames";
 import { Link } from "react-router-dom";
+import classNames from "classnames";
 import styles from "./Navbar.module.css";
 
-const NavItem = ({ title, link, isActive, number }) => {
+export const NavItem = ({ title, link, isActive, number }) => {
   return (
     <li
       className={classNames(styles.navbarLinks, {
@@ -15,5 +15,3 @@ const NavItem = ({ title, link, isActive, number }) => {
     </li>
   );
 };
-
-export default NavItem;
