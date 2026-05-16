@@ -1,0 +1,108 @@
+.planetCard {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  margin: var(--spacing-20) 0;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-20);
+  gap: var(--spacing-24);
+  background: rgba(10, 14, 25, 0.45);
+}
+
+.planetDescription {
+  flex: 1;
+}
+
+.planetThumbnail {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.wishlistList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-16);
+  margin: var(--spacing-16) 0;
+}
+
+.wishlistItem {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-08);
+  padding: var(--spacing-16);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.wishlistItemThumbnail {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.addWishlistItem {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-08);
+  margin: var(--spacing-20) 0 var(--spacing-32);
+  padding: var(--spacing-20);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.addWishlistItem p {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-block-end: var(--spacing-08);
+}
+
+.addWishlistItem label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.addWishlistItem input,
+.addWishlistItem select {
+  height: 38px;
+  padding: 0 var(--spacing-08);
+  margin-block-end: var(--spacing-12);
+  border: none;
+  background-color: #fff;
+  color: #000;
+}
+
+.addWishlistItem button {
+  margin-block-start: var(--spacing-08);
+}
+@media (max-width: 768px) {
+  .planetCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .planetCard > button {
+    margin-inline-start: 0;
+    align-self: flex-start;
+  }
+
+  .planetThumbnail {
+    width: 100px;
+    height: 100px;
+  }
+
+  .addWishlistItem {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .wishlistItem {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}

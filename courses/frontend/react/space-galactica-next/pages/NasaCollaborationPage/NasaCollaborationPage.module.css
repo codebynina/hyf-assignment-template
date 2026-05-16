@@ -1,0 +1,10 @@
+.nasaLandsatLink {
+  display: inline-block;
+  margin-block-start: var(--spacing-16);
+  padding: var(--spacing-12) var(--spacing-16);
+  background-color: #fff;
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

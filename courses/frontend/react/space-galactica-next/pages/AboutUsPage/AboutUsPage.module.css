@@ -79,7 +79,7 @@
   margin-top: 1rem;
 }
 
-.card h2 {
+h2 {
   color: white;
   margin-bottom: 1.5rem;
 }
@@ -90,7 +90,7 @@
   color: white;
 }
 
-.card p {
+p {
   line-height: 1.7;
   color: #ccc;
   margin: 0;
